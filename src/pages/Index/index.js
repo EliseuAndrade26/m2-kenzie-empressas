@@ -1,6 +1,17 @@
 import { Requests } from "../../scripts/requests.js"
+import { Toast } from "../../scripts/toast.js"
 
 class PageLoginRegister{
+
+    static autoLogin(){
+        const token = localStorage.getItem("Kenpressas:token")
+        if(token){
+            Toast.create("auto-Login realizado com sucesso", "green")
+            setTimeout(()=>{
+                window.location.replace("./src/pages/dashboard/dashboard.html")
+            }, 2500)
+        }
+    }
 
     static async makeLogin(requests){
         document.querySelector(".form__login").addEventListener("submit", async (event) =>{
@@ -37,5 +48,6 @@ class PageLoginRegister{
     }
 }
 
+PageLoginRegister.autoLogin()
 PageLoginRegister.makeLogin(Requests)
 PageLoginRegister.makeRegister(Requests)
