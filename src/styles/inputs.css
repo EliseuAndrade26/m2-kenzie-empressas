@@ -1,12 +1,16 @@
-.input-default{
-    height: var(--size-1);
+.input__default{
     width: 100%;
+    border: none;
     border-radius: var(--radius-1);
     background-color: var(--color-white);
-    padding: 0 var(--paddingLeft);
+    padding: 5px;
     font-size: var(--font-text-1);
 }
-.input-default:hover{
-    background-color: var(--color-grey-4);
-    color: var(--color-grey-1)
+.input__default:hover{
+    background-color: var(--grey6);
+    color: var(--grey1)
+}
+
+.input__default:focus{
+    outline-color: var(--brand1);
 }

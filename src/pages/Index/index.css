@@ -1,0 +1,144 @@
+.login__register{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.form__register{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+    gap: 15px;
+    margin: 0 auto;
+    border-radius: var(--radius-2);
+    background-color: var(--brand1);
+    transition: 0.5s;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.9);
+}
+
+.form__register > h2{
+    color: var(--grey6);
+}
+
+.form__register > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.form__register > div > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.form__register > div label{
+    color: var(--grey6);
+}
+
+.form__register > div input{
+    width: 95%;
+    color: var(--grey1);
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.9);
+}
+
+.form__register > div input:focus{
+    outline: none;
+}
+
+.form__register > div > div > select{
+    border: none;
+    padding: 5px;
+    border-radius: var(--radius-1);
+    background-color: var(--color-white);
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.9);
+}
+
+.form__register > div > div > select:focus{
+    outline: none;
+}
+
+.form__register > div > button{
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.9);
+}
+
+.login{
+    margin-top: 50px;
+}
+
+.form__login{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 50px;
+    padding: 20px;
+    gap: 15px;
+    margin: 0 auto;
+    border-radius: var(--radius-2);
+    background-color: var(--brand1);
+    transition: 0.5s;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.9);
+}
+
+.form__login > h2{
+    color: var(--grey6);
+}
+
+.form__login > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.form__login > div > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.form__login > div label{
+    color: var(--grey6);
+}
+
+.form__login > div input{
+    width: 95%;
+    color: var(--grey1);
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.9);
+}
+
+.form__login > div input:focus{
+    outline: none;
+}
+
+.form__login > div > button{
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.9);
+}
+
+@media (min-width: 768px){
+    .login__register{
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0;
+    }
+
+    .register{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 100vh;
+    }
+
+    .login{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:35%;
+        height: 100vh;
+        margin: 0;
+    }
+}

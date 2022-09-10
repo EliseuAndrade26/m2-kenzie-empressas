@@ -1,31 +1,38 @@
-.font-title-1{
+.font__title__1{
     font-size: var(--font-title-1);
     font-weight: var(--font-weight-1);
 }
-.font-title-2{
+
+.font__title__2{
     font-size: var(--font-title-2);
     font-weight: var(--font-weight-1);
 }
-.font-title-3{
+
+.font__title__3{
     font-size: var(--font-title-3);
     font-weight: var(--font-weight-1);
 }
-.font-title-4{
+
+.font__title__4{
     font-size: var(--font-title-4);
     font-weight: var(--font-weight-1);
 }
-.font-text-1{
+
+.font__text__1{
     font-size: var(--font-text-1);
     font-weight: var(--font-weight-3);
 }
-.font-text-2{
+
+.font__text__2{
     font-size: var(--font-text-2);
     font-weight: var(--font-weight-3);
 }
-.font-text-3{
+
+.font__text__3{
     font-size: var(--font-text-3);
     font-weight: var(--font-weight-3);
 }
+
 a{
     text-decoration: none;
     color: var(--font-text-2)

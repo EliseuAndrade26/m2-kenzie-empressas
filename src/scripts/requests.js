@@ -1,11 +1,11 @@
 import { Toast } from "./toast.js"
 
 export class Requests{
-    static baseURL = "http://localhost:6278/"
+    static baseURL = "http://localhost:6278"
     static token = localStorage.getItem("Kenpressas:token")
 
     static async login(data) {
-        const userLogin = await fetch(`${this.baseURL}auth/login`, {
+        const userLogin = await fetch(`${this.baseURL}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -14,24 +14,25 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            localStorage.setItem("Kenpressas:token", resp.token)
-            localStorage.setItem("Kenpressas:uuid", resp.uuid)
-            localStorage.setItem("Kenpressas:admin", resp.is_admin)
-            Toast.create("Login realizado com sucesso", "#13E000")
-            setTimeout(()=>{
-                window.location.replace("./src/pages/dashboard/dashboard.html'")
-            }, 2500)
+            console.log(resp)
+            if(resp.error){
+                Toast.create("E-mail ou senha incorreta", "red")
+            } else {
+                localStorage.setItem("Kenpressas:token", resp.token)
+                localStorage.setItem("Kenpressas:uuid", resp.uuid)
+                localStorage.setItem("Kenpressas:admin", resp.is_admin)
+                Toast.create("Login realizado com sucesso", "green")
+                setTimeout(()=>{
+                    window.location.replace("./src/pages/dashboard/dashboard.html")
+                }, 2500)
+            }
         })
-        .catch(err => {
-            console.log(err)
-            Toast.create("E-mail ou senha incorreta", "#F01700")
-        })
-        console.log(userLogin)
+        // console.log(userLogin)
         return userLogin
     }
 
     static async createUser(data) {
-        const newUser = await fetch(`${this.baseURL}auth/register/user`, {
+        const newUser = await fetch(`${this.baseURL}/auth/register/user`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -40,13 +41,13 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário criado com sucesso", "#13E000")
+            if(resp.error){
+                Toast.create("Não foi possível registrar", "red")
+            } else {
+                Toast.create("Registro realizado com sucesso", "green")
+            }
         })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Usuário não criado, por favor reenvie os seus dados", "#F01700")
-        })
-        console.log(newUser)
+        // console.log(newUser)
         return newUser
     }
 
@@ -60,7 +61,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar as Empressas associadas", "#F01700")
+            Toast.create("Não foi possível carregar as Empressas associadas", "red")
         })
         console.log(companies)
         return companies
@@ -76,7 +77,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar as Empressas associadas", "#F01700")
+            Toast.create("Não foi possível carregar as Empressas associadas", "red")
         })
         console.log(companies)
         return companies
@@ -92,7 +93,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os empregados associados", "#F01700")
+            Toast.create("Não foi possível carregar os empregados associados", "red")
         })
         console.log(coworkers)
         return coworkers
@@ -108,7 +109,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "#F01700")
+            Toast.create("Não foi possível carregar os departamentos associados", "red")
         })
         console.log(departments)
         return departments
@@ -125,11 +126,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Informações atualizadas com sucesso", "#13E000")
+            Toast.create("Informações atualizadas com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível Atualizar as informações, tente novamente!", "#F01700")
+            Toast.create("Não foi possível Atualizar as informações, tente novamente!", "red")
         })
         console.log(user)
         return user
@@ -145,7 +146,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os usuários associados", "#F01700")
+            Toast.create("Não foi possível carregar os usuários associados", "red")
         })
         console.log(users)
         return users
@@ -161,7 +162,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os usuários associados", "#F01700")
+            Toast.create("Não foi possível carregar os usuários associados", "red")
         })
         console.log(users)
         return users
@@ -178,11 +179,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Informações atualizadas com sucesso", "#13E000")
+            Toast.create("Informações atualizadas com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível Atualizar as informações, tente novamente", "#F01700")
+            Toast.create("Não foi possível Atualizar as informações, tente novamente", "red")
         })
         console.log(user)
         return user
@@ -199,11 +200,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Empressa criada com sucesso", "#13E000")
+            Toast.create("Empressa criada com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Empressa não criada, por favor reenvie os seus dados", "#F01700")
+            Toast.create("Empressa não criada, por favor reenvie os seus dados", "red")
         })
         console.log(newCompany)
         return newCompany
@@ -220,7 +221,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os setores associados", "#F01700")
+            Toast.create("Não foi possível carregar os setores associados", "red")
         })
         console.log(sectors)
         return sectors
@@ -236,7 +237,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "#F01700")
+            Toast.create("Não foi possível carregar os departamentos associados", "red")
         })
         console.log(departments)
         return departments
@@ -252,7 +253,7 @@ export class Requests{
         .then(resp => resp.json())
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "#F01700")
+            Toast.create("Não foi possível carregar os departamentos associados", "red")
         })
         console.log(departments)
         return departments 
@@ -269,11 +270,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Departamento criada com sucesso", "#13E000")
+            Toast.create("Departamento criada com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível criar o departamento, por favor reenvie o formulário", "#F01700")
+            Toast.create("Não foi possível criar o departamento, por favor reenvie o formulário", "red")
         })
         console.log(newDepartment)
         return newDepartment 
@@ -290,11 +291,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário contratado com sucesso", "#13E000")
+            Toast.create("Usuário contratado com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível contratar o usuário, por favor reenvie o formulário", "#F01700")
+            Toast.create("Não foi possível contratar o usuário, por favor reenvie o formulário", "red")
         })
         console.log(newWorker)
         return newWorker 
@@ -309,11 +310,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário demitido com sucesso", "#13E000")
+            Toast.create("Usuário demitido com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "#F01700")
+            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
         })
         console.log(user)
         return user 
@@ -330,11 +331,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Departamento atualizado com sucesso", "#13E000")
+            Toast.create("Departamento atualizado com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível atualizar as informações, por favor reenvie o formulário", "#F01700")
+            Toast.create("Não foi possível atualizar as informações, por favor reenvie o formulário", "red")
         })
         console.log(department)
         return department 
@@ -349,11 +350,11 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário demitido com sucesso", "#13E000")
+            Toast.create("Usuário demitido com sucesso", "green")
         })
         .catch(err =>{ 
             console.log(err)
-            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "#F01700")
+            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
         })
         // return departament 
     }

@@ -5,12 +5,72 @@
     <meta name="description" content="Kenpresas | Login/register Page">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./src/assets/img/favicons/favicon.jpeg" type="image/x-icon">
-    <script defer type="module" src="./src/pages/Index/index.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/styles/reset.css">
+    <link rel="stylesheet" href="./src/styles/global.css">
+    <link rel="stylesheet" href="./src/styles/colors.css">
+    <link rel="stylesheet" href="./src/styles/fonts.css">
+    <link rel="stylesheet" href="./src/styles/button.css">
+    <link rel="stylesheet" href="./src/styles/inputs.css">
+    <link rel="stylesheet" href="./src/styles/menu.css">
+    <link rel="stylesheet" href="./src/pages/Index/index.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script defer type="module" src="./src/pages/Index/index.js"></script>
     <title>Kenpresas | Login/register Page</title>
 </head>
 <body>
-    
+    <main class="container">
+        <div class="login__register">
+            <section class="register">
+            <form class="form__register">
+                <h2 class="font__title__2">Registre-se</h2>
+                <div>
+                    <div>
+                        <label for="register__name" class="font__text__1">Nome:</label>
+                        <input type="text" id="register__name" class="input__default" placeholder="Informe o seu nome" required>
+                    </div>
+                    <div>
+                        <label for="register__email" class="font__text__1">E-mail:</label>
+                        <input type="email" id="register__email" class="input__default" placeholder="Informe o seu e-mail" required>
+                    </div>
+                    <div>
+                        <label for="register__password" class="font__text__1">Senha:</label>
+                        <input type="password" id="register__password" class="input__default" placeholder="Informe o sua senha" required>
+                    </div>
+                    <div>
+                        <label for="select__profissional__level" class="font__text__1">Nível Profissional:</label>
+                        <select id="select__profissional__level" class="font__text__1">
+                            <option value="" >Escolha o seu nível</option>
+                            <option value="estágio">Estágio</option>
+                            <option value="júnior">Júnior</option>
+                            <option value="pleno">Pleno</option>
+                            <option value="sênior">Sênior</option>
+                        </select>
+                    </div>
+                    <button class="button__default" type="submit">Entrar</button>
+                </div>
+            </form>
+            </section>
+            <section class="login">
+                <form class="form__login">
+                    <h2 class="font__title__2">Login</h2>
+                    <div>
+                        <div>
+                            <label for="login__email" class="font__text__1">E-mail:</label>
+                            <input id="login__email" class="input__default" type="email" placeholder="Digite seu e-mail" required>
+                        </div>
+                        <div>
+                            <label for="login__password" class="font__text__1">Senha:</label>
+                            <input id="login__password" class="input__default" type="password" placeholder="Digite sua senha" required>
+                        </div>
+                        <button class="button__default" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
 </body>
 </html>
