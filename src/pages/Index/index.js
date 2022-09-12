@@ -1,15 +1,23 @@
 import { Requests } from "../../scripts/requests.js"
 import { Toast } from "../../scripts/toast.js"
+import { CompiniesCard } from "../../scripts/companiesCard.js"
 
 class PageLoginRegister{
 
     static autoLogin(){
         const token = localStorage.getItem("Kenpressas:token")
+        const isAdmin = localStorage.getItem("Kenpressas:admin")
         if(token){
             Toast.create("auto-Login realizado com sucesso", "green")
-            setTimeout(()=>{
-                window.location.replace("./src/pages/dashboard/dashboard.html")
-            }, 2500)
+            if(isAdmin === "false"){
+                setTimeout(()=>{
+                    window.location.replace("./src/pages/dashboards/dashboard-no-admin/dashboard.html")
+                }, 2500)
+            } else {
+                setTimeout(()=>{
+                    window.location.replace("./src/pages/dashboards/dashboard-admin/dashboard.html")
+                }, 2500)
+            }
         }
     }
 
@@ -46,8 +54,14 @@ class PageLoginRegister{
             await requests.createUser(body)
         })
     }
+
+    static async companies(requests){
+        const companiesList = await requests.showCompanies()
+        CompiniesCard.makeCardLogin(companiesList)
+    }
 }
 
 PageLoginRegister.autoLogin()
 PageLoginRegister.makeLogin(Requests)
 PageLoginRegister.makeRegister(Requests)
+PageLoginRegister.companies(Requests)

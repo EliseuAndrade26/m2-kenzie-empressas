@@ -28,3 +28,22 @@
   max-width: var(--container-1);
   margin: 0 auto;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+select{
+  padding: 5px;
+  border-radius: var(--radius-1);
+  color: var(--brand1);
+  background-color: var(--color-white);
+}
+
+select:focus{
+  outline-color: var(--brand1);
+}
+
+.hide{
+  display: none;
+}

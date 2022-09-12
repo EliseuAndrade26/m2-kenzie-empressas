@@ -2,15 +2,16 @@
     width: 100%;
     border: none;
     border-radius: var(--radius-1);
+    color: var(--brand1);
     background-color: var(--color-white);
     padding: 5px;
     font-size: var(--font-text-1);
 }
 .input__default:hover{
     background-color: var(--grey6);
-    color: var(--grey1)
+    color: var(--brand1)
 }
 
 .input__default:focus{
-    outline-color: var(--brand1);
+    outline-color: var(--brand2);
 }

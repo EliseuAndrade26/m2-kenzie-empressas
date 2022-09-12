@@ -14,7 +14,6 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            console.log(resp)
             if(resp.error){
                 Toast.create("E-mail ou senha incorreta", "red")
             } else {
@@ -22,12 +21,18 @@ export class Requests{
                 localStorage.setItem("Kenpressas:uuid", resp.uuid)
                 localStorage.setItem("Kenpressas:admin", resp.is_admin)
                 Toast.create("Login realizado com sucesso", "green")
-                setTimeout(()=>{
-                    window.location.replace("./src/pages/dashboard/dashboard.html")
-                }, 2500)
+                
+                if(localStorage.getItem("Kenpressas:admin") === "false"){
+                    setTimeout(()=>{
+                        window.location.replace("./src/pages/dashboards/dashboard-no-admin/dashboard.html")
+                    }, 2500)
+                } else {
+                    setTimeout(()=>{
+                        window.location.replace("./src/pages/dashboards/dashboard-admin/dashboard.html")
+                    }, 2500)
+                }
             }
         })
-        // console.log(userLogin)
         return userLogin
     }
 
@@ -47,44 +52,46 @@ export class Requests{
                 Toast.create("Registro realizado com sucesso", "green")
             }
         })
-        // console.log(newUser)
-        return newUser
     }
 
     static async showCompanies() {
-        const companies = await fetch(`${this.baseURL}companies`, {
+        const companies = await fetch(`${this.baseURL}/companies`, {
             method: "GET",
             headers: {
                 Authorization: "Beare null"
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar as Empressas associadas", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar as Empressas associadas", "red")
+            } else {
+                return resp
+            }
         })
-        console.log(companies)
-        return companies
+       return companies
     }
     
     static async showCompaniesBySector(sector) {
-        const companies = await fetch(`${this.baseURL}companies/${sector}`, {
+        const companies = await fetch(`${this.baseURL}/companies/${sector}`, {
             method: "GET",
             headers: {
                 Authorization: "Beare null"
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar as Empressas associadas", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar as Empressas associadas", "red")
+            } else {
+                return resp
+            }
         })
-        console.log(companies)
         return companies
     }
     
     static async showCoworkersSameDepartment() {
-        const coworkers = await fetch(`${this.baseURL}users/departments/coworkers`, {
+        const coworkers = await fetch(`${this.baseURL}/users/departments/coworkers`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -100,7 +107,7 @@ export class Requests{
     }
     
     static async showDepartmentsSameCompanie() {
-        const departments = await fetch(`${this.baseURL}users/departments`, {
+        const departments = await fetch(`${this.baseURL}/users/departments`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -116,7 +123,7 @@ export class Requests{
     }
     
     static async updateUser(data) {
-        const user = await fetch(`${this.baseURL}users`, {
+        const user = await fetch(`${this.baseURL}/users`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -137,7 +144,7 @@ export class Requests{
     }
     
     static async showAllUsers() {
-        const users = await fetch(`${this.baseURL}users`, {
+        const users = await fetch(`${this.baseURL}/users`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -153,7 +160,7 @@ export class Requests{
     }
     
     static async showUsersOutWork() {
-        const users = await fetch(`${this.baseURL}admin/out_of_work`, {
+        const users = await fetch(`${this.baseURL}/admin/out_of_work`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -169,7 +176,7 @@ export class Requests{
     }
     
     static async updateWorker(data, id) {
-        const user = await fetch(`${this.baseURL}admin/update_user/${id}`, {
+        const user = await fetch(`${this.baseURL}/admin/update_user/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -190,7 +197,7 @@ export class Requests{
     }
     
     static async createCompany(data) {
-        const newCompany = await fetch(`${this.baseURL}companies`, {
+        const newCompany = await fetch(`${this.baseURL}/companies`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -200,11 +207,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Empressa criada com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Empressa não criada, por favor reenvie os seus dados", "red")
+            if(resp.error){
+                Toast.create("Empressa não criada, por favor reenvie os seus dados", "red")
+            } else {
+                Toast.create("Empressa criada com sucesso", "green")
+                return resp
+            }
         })
         console.log(newCompany)
         return newCompany
@@ -212,23 +220,25 @@ export class Requests{
     
     
     static async showAllSectors() {
-        const sectors = await fetch(`${this.baseURL}sectors`, {
+        const sectors = await fetch(`${this.baseURL}/sectors`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os setores associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os setores associados", "red")
+            } else {
+                return resp
+            }
         })
-        console.log(sectors)
         return sectors
     }
     
     static async showAllDepartments() {
-        const departments = await fetch(`${this.baseURL}departments`, {
+        const departments = await fetch(`${this.baseURL}/departments`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -244,23 +254,25 @@ export class Requests{
     }
     
     static async showAllDepartmentsAtCompany(id) {
-        const departments = await fetch(`${this.baseURL}departments/${id}`, {
+        const departments = await fetch(`${this.baseURL}/departments/${id}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${this.token}`
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os departamentos associados", "red")
+            } else {
+                return resp
+            }
         })
-        console.log(departments)
         return departments 
     }
 
     static async createDepartment(data) {
-        const newDepartment = await fetch(`${this.baseURL}departments`, {
+        const newDepartment = await fetch(`${this.baseURL}/departments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -281,7 +293,7 @@ export class Requests{
     }
     
     static async hireUser(data) {
-        const newWorker = await fetch(`${this.baseURL}departments/hire/`, {
+        const newWorker = await fetch(`${this.baseURL}/departments/hire/`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -302,7 +314,7 @@ export class Requests{
     }
     
     static async dismissWorker(id) {
-        const user = await fetch(`${this.baseURL}departments/dismiss/${id}`, {
+        const user = await fetch(`${this.baseURL}/departments/dismiss/${id}`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${this.token}`
@@ -321,7 +333,7 @@ export class Requests{
     }
     
     static async updateDepartament(data, id) {
-        const department = await fetch(`${this.baseURL}departments${id}`, {
+        const department = await fetch(`${this.baseURL}/departments${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -342,7 +354,7 @@ export class Requests{
     }
 
     static async deleteDepartament(id) {
-        const departament = await fetch(`${this.baseURL}departments/${id}`, {
+        const departament = await fetch(`${this.baseURL}/departments/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${this.token}`
