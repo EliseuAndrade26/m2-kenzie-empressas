@@ -28,7 +28,18 @@ export class Sectors{
             let option = document.createElement("option")
 
             option.value = elem.uuid
-            option.innerText = elem.description
+            option.innerText = elem.name
+
+            select.appendChild(option)
+        })
+    }
+
+    static makeOptionsUsers(list, select){
+        list.forEach(elem =>{
+            let option = document.createElement("option")
+
+            option.value = elem.uuid
+            option.innerText = elem.username
 
             select.appendChild(option)
         })

@@ -82,7 +82,7 @@ main > .container{
     margin-top: 20px;
 }
 
-.show__companies > li{
+.show__companies > .list__company{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -94,8 +94,74 @@ main > .container{
     border-radius: var(--radius-2);
 }
 
-.show__companies > li > .departaments{
+.show__companies > .list__company > .departaments{
     display: flex;
+    align-items: center;
     overflow-x: scroll;
     gap: 5px;
+    color: var(--grey1);
+}
+
+.show__companies > .list__company > .departaments > li > button{
+    border-radius: var(--radius-1);
+    width: auto;
+    height: auto;
+}
+
+.show__companies > .list__company > p{
+    color: var(--grey1);
+}
+
+.show__companies > .list__company > div{
+    display: flex;
+    justify-content: center;
+}
+
+.show__companies > .especific__company{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 5px;
+    width: 100%;
+    border: solid 1px var(--grey2);
+    box-shadow: 10px 10px 5px 0px var(--grey-1-transparent);
+    border-radius: var(--radius-2);
+}
+
+.show__companies > .especific__company > h2{
+    color: var(--grey1);
+}
+
+.show__companies > .especific__company > div{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    gap: 15px;
+}
+
+.show__companies > .especific__company > div > ul{
+    display: flex;
+    gap: 15px;
+}
+
+.show__companies > .especific__company > div > ul > li > button{
+    height: 25px;
+    width: auto;
+    border-radius: var(--radius-1);
+}
+
+.show__companies > .especific__company > div > span{
+    color: var(--grey1);
+}
+
+.show__companies > .especific__company > p{
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius-1);
+    padding: 4px;
+    color: var(--grey1);
+}
+
+.show__companies > .especific__company > div > button{
+    min-width: 100px;
+    height: 40px;
 }
