@@ -98,9 +98,12 @@ export class Requests{
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os empregados associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os empregados associados", "red")
+            } else {
+                return resp
+            }
         })
         console.log(coworkers)
         return coworkers
@@ -114,9 +117,12 @@ export class Requests{
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os departamentos associados", "red")
+            } else {
+                return resp
+            }
         })
         console.log(departments)
         return departments
@@ -133,11 +139,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Informações atualizadas com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível Atualizar as informações, tente novamente!", "red")
+            if(resp.error){
+                Toast.create("Não foi possível Atualizar as informações, tente novamente!", "red")
+            } else {
+                Toast.create("Informações atualizadas com sucesso", "green")
+                return resp
+            }
         })
         console.log(user)
         return user
@@ -151,9 +158,12 @@ export class Requests{
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os usuários associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os usuários associados", "red")
+            } else {
+                return resp
+            }
         })
         console.log(users)
         return users
@@ -167,11 +177,13 @@ export class Requests{
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os usuários associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os usuários associados", "red")
+            } else {
+                return resp
+            }
         })
-        console.log(users)
         return users
     }
     
@@ -186,11 +198,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Informações atualizadas com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível Atualizar as informações, tente novamente", "red")
+            if(resp.error){
+                Toast.create("Não foi possível carregar os usuários associados", "red")
+            } else {
+                Toast.create("Informações atualizadas com sucesso", "green")
+                return resp
+            }
         })
         console.log(user)
         return user
@@ -245,9 +258,12 @@ export class Requests{
             }
         })
         .then(resp => resp.json())
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível carregar os departamentos associados", "red")
+        .then(resp => {
+            if(resp.error){
+                Toast.create("Não foi possível carregar os departamentos associados", "red")
+            } else {
+                return resp
+            }
         })
         console.log(departments)
         return departments
@@ -282,13 +298,13 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Departamento criada com sucesso", "green")
+            if(resp.error){
+                Toast.create("Não foi possível criar o departamento, por favor reenvie o formulário", "red")
+            } else {
+                Toast.create("Departamento criada com sucesso", "green")
+                return resp
+            }
         })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível criar o departamento, por favor reenvie o formulário", "red")
-        })
-        console.log(newDepartment)
         return newDepartment 
     }
     
@@ -303,11 +319,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário contratado com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível contratar o usuário, por favor reenvie o formulário", "red")
+            if(resp.error){
+                Toast.create("Não foi possível contratar o usuário, por favor reenvie o formulário", "red")
+            } else {
+                Toast.create("Usuário contratado com sucesso", "green")
+                return resp
+            }
         })
         console.log(newWorker)
         return newWorker 
@@ -322,11 +339,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário demitido com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
+            if(resp.error){
+                Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
+            } else {
+                Toast.create("Usuário demitido com sucesso", "green")
+                return resp
+            }
         })
         console.log(user)
         return user 
@@ -343,11 +361,12 @@ export class Requests{
         })
         .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Departamento atualizado com sucesso", "green")
-        })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível atualizar as informações, por favor reenvie o formulário", "red")
+            if(resp.error){
+                Toast.create("Não foi possível atualizar as informações, por favor reenvie o formulário", "red")
+            } else {
+                Toast.create("Departamento atualizado com sucesso", "green")
+                return resp
+            }
         })
         console.log(department)
         return department 
@@ -360,14 +379,13 @@ export class Requests{
                 Authorization: `Bearer ${this.token}`
             }
         })
-        .then(resp => resp.json())
         .then(resp => {
-            Toast.create("Usuário demitido com sucesso", "green")
+            if(resp.error){
+                Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
+            } else {
+                Toast.create("Usuário demitido com sucesso", "green")
+                return resp
+            }
         })
-        .catch(err =>{ 
-            console.log(err)
-            Toast.create("Não foi possível realizar a demissão, por favor reenvie o formulário", "red")
-        })
-        // return departament 
     }
 }

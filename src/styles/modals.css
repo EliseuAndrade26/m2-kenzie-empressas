@@ -9,7 +9,7 @@
     background-color: var(--grey-1-transparent);
 }
 
-#modal__company{
+form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,33 +20,33 @@
     background-color: var(--color-white);
 }
 
-#modal__company > header{
+form > header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-#modal__company > header > h3{
+form > header > h3{
     color: var(--brand1);
 }
 
-#modal__company > header > button{
+form > header > button{
     width: 60px;
 }
 
-#modal__company > div{
+form > div{
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100%;
 }
 
-#modal__company > div > label{
+form > div > label{
     color: var(--grey1);
 }
 
-#modal__company > div > input{
+form > div > .input__default{
     border: 1px solid var(--grey3);
-    width: 97%;
+    width: auto;
 }

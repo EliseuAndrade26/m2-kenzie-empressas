@@ -4,7 +4,7 @@ import { CompiniesCard } from "../../scripts/companiesCard.js"
 import { Modal } from "../../scripts/modals.js"
 import { Toast } from "../../scripts/toast.js"
 
-class Dashboard{
+export class Dashboard{
     
     static logout(){
         const btnLogout = document.querySelector("#logout")
@@ -63,6 +63,19 @@ class Dashboard{
             await Modal.addNewCompany(sectorsList)
         })
     }
+
+    
+
+    static async showCompanyInformation(requests){
+        const ul = document.querySelector(".show__companies")
+        ul.addEventListener("click", async event =>{
+            const button = event.target
+            if(button.tagName === "BUTTON"){
+                const companiesList = await requests.showCompanies()
+                await CompiniesCard.especificCompanyCard(companiesList, button.id, requests)
+            }
+        })
+    }
 }
 
 Dashboard.logout()
@@ -71,3 +84,4 @@ Dashboard.changeSector(Requests)
 Dashboard.search(Requests)
 Dashboard.companies(Requests)
 Dashboard.addCompany(Requests)
+Dashboard.showCompanyInformation(Requests)

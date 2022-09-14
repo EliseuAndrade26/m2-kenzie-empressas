@@ -131,7 +131,6 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
     width: 95%;
     margin: 0 auto;
     gap: 20px;
@@ -139,12 +138,13 @@
 }
 
 .companies > li{
-    width: 160px;
-    height: 60px;
+    width: 200px;
+    padding: 2px;
 }
 
 .companies > li > h3{
     color: var(--grey1);
+    width: 200px;
 }
 
 .companies > li > span{
@@ -163,7 +163,7 @@
         justify-content: center;
         align-items: center;
         width: 40%;
-        height: 100vh;
+        height: 70vh;
     }
 
     .login{
@@ -171,11 +171,13 @@
         justify-content: center;
         align-items: center;
         width:35%;
-        height: 100vh;
+        height: 70vh;
         margin: 0;
     }
 
     .companies{
         justify-content: flex-start;
     }
+
+    
 }
