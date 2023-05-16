@@ -1,0 +1,22 @@
+.button__default{
+    width: 150px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    color: var(--grey6);
+    background-color: var(--brand2);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.button__enviar{
+    width: 100%;
+    height: 47px;
+    transition: 0.5s;
+}
+
+.button__default:hover{
+    border: 1px solid var(--grey1);
+    color: var(--brand1);
+    background-color: var(--grey6);
+}

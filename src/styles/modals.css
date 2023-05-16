@@ -1,0 +1,52 @@
+.modal__backgroud{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--grey-1-transparent);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 20px;
+    padding: 10px;
+    border-radius: var(--radius-2);
+    background-color: var(--color-white);
+}
+
+form > header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+form > header > h3{
+    color: var(--brand1);
+}
+
+form > header > button{
+    width: 60px;
+}
+
+form > div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+form > div > label{
+    color: var(--grey1);
+}
+
+form > div > .input__default{
+    border: 1px solid var(--grey3);
+    width: auto;
+}
